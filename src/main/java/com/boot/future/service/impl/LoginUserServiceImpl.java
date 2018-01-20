@@ -35,13 +35,13 @@ import java.util.Map;
 public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser> implements ILoginUserService {
 	final static Logger logger = LoggerFactory.getLogger(LoginUserServiceImpl.class);
 
-	//@Cacheable(value = "userInfo", key = "#p0")
+	@Cacheable(value = "userInfo", key = "#p0")
 	public LoginUser getLoginUserById(Integer id) {
 		logger.info("无缓存的时候调用这里");
 		LoginUser user = baseMapper.selectById(id);
 		return user;
 	}
-	//@CachePut(value = "userInfo", key = "#p0")
+	@CachePut(value = "userInfo", key = "#p0")
 	public void  update(Integer id, String name, String password, String phone) {
 		boolean falg = false;
 		LoginUser user = super.selectById(id);
