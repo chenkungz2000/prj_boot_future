@@ -22,8 +22,6 @@ import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import com.boot.future.service.impl.LoginUserServiceImpl;
-
 import java.lang.reflect.Method;
 
 

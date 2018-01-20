@@ -21,7 +21,7 @@ import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.LongValue;
 
 @Configuration
-@MapperScan("com.sbmbp.mapper*")
+@MapperScan("com.boot.future.mapper*")
 public class MybatisPlusConfig {
 
 	/**

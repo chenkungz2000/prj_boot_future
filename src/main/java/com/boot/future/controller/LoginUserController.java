@@ -1,6 +1,5 @@
 package com.boot.future.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.boot.future.entity.LoginUser;
 import com.boot.future.entity.LoginUserData;
 import com.boot.future.service.ILoginUserDataService;
@@ -17,12 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

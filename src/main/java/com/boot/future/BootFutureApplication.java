@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
-@MapperScan("com.sbmbp.mapper.*")
+@MapperScan("com.boot.future.mapper.*")
 @SpringBootApplication
 @EnableCaching  
 public class BootFutureApplication {
