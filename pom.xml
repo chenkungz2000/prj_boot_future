@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>prj_boot-future</name>
-	<description>Demo project for Spring Boot</description>
+	<description>>prj_boot-future</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -127,7 +127,6 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 		</dependency>
-		<!--修改即使生效 -->
 		<!--swagger s -->
 		<dependency>
 			<groupId>io.springfox</groupId>

@@ -27,10 +27,10 @@ public class SwaggerConfig {
 		return new ApiInfoBuilder().title("对外开放接口API 文档").description("HTTP对外开放接口").version("1.0.0")
 				.termsOfServiceUrl("http://xxx.xxx.com").license("LICENSE").licenseUrl("http://xxx.xxx.com").build();
 	}
-/*    public void addResourceHandlers(ResourceHandlerRegistry registry) {  
-        registry.addResourceHandler("swagger-ui.html")  
-                .addResourceLocations("classpath:/META-INF/resources/");  
-        registry.addResourceHandler("swagger/**")  
-                .addResourceLocations("classpath:/META-INF/resources/swagger/");  
-    } */ 
+/*    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("swagger/**")
+                .addResourceLocations("classpath:/META-INF/resources/swagger/");
+    }*/
 }
