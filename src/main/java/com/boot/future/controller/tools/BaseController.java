@@ -1,4 +1,4 @@
-package com.boot.future.controller;
+package com.boot.future.controller.tools;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

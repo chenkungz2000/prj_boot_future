@@ -1,32 +1,25 @@
-package com.boot.future.controller;
+package com.boot.future.controller.tools;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.boot.future.entity.LoginUser;
 import com.boot.future.service.ILoginUserService;
 import com.boot.future.swagger.result.Result;
-
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
+import org.springframework.web.servlet.ModelAndView;
 import redis.clients.jedis.Jedis;
 
 /**
@@ -147,4 +140,32 @@ public class TestController {
 		map.put("flag", flag);
 		return map;
 	}
+
+	/**
+	 * 测试hello
+	 * @return
+	 */
+	@ApiOperation(value = "测试hello")
+	@ApiResponse(code = 200, message = "success", response = Result.class)
+	@GetMapping(value = "/hello")
+	public ModelAndView hello(Model model) {
+		ModelAndView view =new ModelAndView();
+		view.setViewName("hello");
+		view.addObject("name","ck");
+		return view;
+	}
+
+	/**
+	 * 测试hello
+	 * @return
+	 */
+	@ApiOperation(value = "测试hello")
+	@ApiResponse(code = 200, message = "success", response = Result.class)
+	@GetMapping(value = "/hello2")
+	public String hello2(Model model) {
+		model.addAttribute("name", "Dear");
+		return "hello";
+	}
+
+
 }

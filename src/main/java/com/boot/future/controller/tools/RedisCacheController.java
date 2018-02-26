@@ -1,4 +1,4 @@
-package com.boot.future.controller;
+package com.boot.future.controller.tools;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,19 +8,16 @@ import com.boot.future.tools.RedisUtils;
 
 @RestController
 @RequestMapping("/caches")
-public class  RedisCacheController {
+public class RedisCacheController {
 
     @Autowired
     private RedisUtils redisUtils;
 
     @RequestMapping("/test")
-    public String  test(){
-
-
-
+    public String test() {
         redisUtils.set("123", "hello world");
         System.out.println("进入了方法");
-        String string= redisUtils.get("123").toString();
+        String string = redisUtils.get("123").toString();
         return string;
     }
 

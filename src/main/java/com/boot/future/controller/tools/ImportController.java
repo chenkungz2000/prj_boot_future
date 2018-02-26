@@ -1,4 +1,4 @@
-package com.boot.future.controller;
+package com.boot.future.controller.tools;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,7 +37,7 @@ public class ImportController {
     HttpServletRequest request;
     @Autowired
     HttpServletResponse response;
- 
+
 
     @RequestMapping(value = "/file", method = RequestMethod.POST)
     @ResponseBody
@@ -75,7 +75,6 @@ public class ImportController {
         map.put("flag", flag);
         return map;
     }
-
 
 
     /**

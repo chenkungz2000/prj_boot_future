@@ -1,4 +1,4 @@
-package com.boot.future.controller;
+package com.boot.future.controller.cms;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

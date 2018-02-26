@@ -1,4 +1,4 @@
-package com.boot.future.controller;
+package com.boot.future.controller.tools;
 
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;

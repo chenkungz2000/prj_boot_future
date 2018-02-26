@@ -57,7 +57,6 @@ $('#signinSubmit').click(function(){
 		$.post($("#login_form").attr("action"), $("#login_form")
 				.serialize(), function(data) {
 			if (data.flag == true) {
-				alert(data.flag)
 				window.location.href = "/cms/index.html";
 			}else{
 				window.location.href = "/cms/login.html";
