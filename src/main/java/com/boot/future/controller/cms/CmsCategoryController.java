@@ -1,18 +1,16 @@
 package com.boot.future.controller.cms;
 
-import com.boot.future.tools.Tools;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.*;
 
 import com.boot.future.entity.CmsCategory;
 import com.boot.future.service.ICmsCategoryService;
 import com.boot.future.swagger.result.Result;
-import com.boot.future.tools.PingYinUtil;
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,11 +49,12 @@ public class CmsCategoryController {
         }
         return map;
     }
+
     @ApiOperation(value = "创建栏目")
     @ApiResponse(code = 200, message = "success", response = Result.class)
-    @GetMapping(value = "/test2")
+    @GetMapping(value = "/in2")
     @ResponseBody
-    public Map<String, Object> test2(
+    public Map<String, Object> insert2(
             @ApiParam(required = true, value = "姓名") String name,
             @ApiParam(required = true, value = "关键字") String keyword,
             @ApiParam(required = true, value = "別名") String nickname,
@@ -71,7 +70,7 @@ public class CmsCategoryController {
             @ApiParam(required = true, value = "姓名") String name,
             @ApiParam(required = true, value = "关键字") String keyword,
             @ApiParam(required = true, value = "別名") String nickname,
-            @ApiParam(required = true, value = "父id") String parentid){
+            @ApiParam(required = true, value = "父id") String parentid) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             map = service.insertCmsCategory(name, keyword, nickname, parentid);
@@ -87,7 +86,6 @@ public class CmsCategoryController {
     @ResponseBody
     public Map<String, Object> getList() throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
-
         boolean flag = false;
         try {
             List<CmsCategory> list = service.getList();

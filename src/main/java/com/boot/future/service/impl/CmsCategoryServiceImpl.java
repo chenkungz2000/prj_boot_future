@@ -4,29 +4,19 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.boot.future.entity.CmsCategory;
-import com.boot.future.entity.LoginUser;
 import com.boot.future.mapper.CmsCategoryMapper;
 import com.boot.future.service.ICmsCategoryService;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.boot.future.swagger.result.Result;
-import com.boot.future.tools.PingYinUtil;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
+import com.boot.future.util.PingYinUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
@@ -72,9 +62,11 @@ public class CmsCategoryServiceImpl extends ServiceImpl<CmsCategoryMapper, CmsCa
         Map<String, Object> map = new HashMap<String, Object>();
         boolean flag = false;
         Date date = new Date();
-        if (parentid == null)
-            parentid = "0";
-        Integer iparentid = Integer.valueOf(parentid);
+        Integer iparentid = 0;
+        if (parentid == null || parentid.length() <= 0)
+            iparentid = 0;
+        else
+            iparentid = Integer.valueOf(parentid);
         if (getListByNameAndParentId(name, iparentid).size() == 0) {
             CmsCategory cmsCategory = new CmsCategory();
             cmsCategory.setName(name);
@@ -87,10 +79,13 @@ public class CmsCategoryServiceImpl extends ServiceImpl<CmsCategoryMapper, CmsCa
                 cmsCategory.setCrdate(date);
             cmsCategory.setUpdte(date);
             flag = insert(cmsCategory);
+            //测试事务回滚
+            /*
             cmsCategory.setName("test");
             String test = "";
             cmsCategory.setParentId(Integer.valueOf(test));
             flag = insert(cmsCategory);
+            */
         } else {
             map.put("msg", "同个栏目下存在同名");
         }
@@ -102,11 +97,12 @@ public class CmsCategoryServiceImpl extends ServiceImpl<CmsCategoryMapper, CmsCa
         Map<String, Object> map = new HashMap<String, Object>();
         boolean flag = false;
         Date date = new Date();
-        if (parentid == null)
-            parentid = "0";
-        Integer iparentid = Integer.valueOf(parentid);
+        Integer iparentid = 0;
+        if (parentid == null || parentid.length() <= 0)
+            iparentid = 0;
+        else
+            iparentid = Integer.valueOf(parentid);
         try {
-
             if (getListByNameAndParentId(name, iparentid).size() == 0) {
                 CmsCategory cmsCategory = new CmsCategory();
                 cmsCategory.setName(name);
@@ -119,21 +115,12 @@ public class CmsCategoryServiceImpl extends ServiceImpl<CmsCategoryMapper, CmsCa
                     cmsCategory.setCrdate(date);
                 cmsCategory.setUpdte(date);
                 flag = insert(cmsCategory);
-                cmsCategory.setName("test");
-                String test = "";
-                cmsCategory.setParentId(Integer.valueOf(test));
-                flag = insert(cmsCategory);
             } else {
                 map.put("msg", "同个栏目下存在同名");
             }
         } catch (Exception e) {
             map.put("msg", e.getMessage());
-            /*事务回滚*/
-            //1直接抛出异常到控制台，程序异常，终止程序了， 接口500错误，不可进行操作，不友好
-            // throw new RuntimeException();
-            //和ctrl层try{}catch{}效果一样，友好
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-
         }
         map.put("flag", flag);
         return map;

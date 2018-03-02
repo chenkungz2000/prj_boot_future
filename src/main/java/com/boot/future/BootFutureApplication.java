@@ -9,7 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @MapperScan("com.boot.future.mapper.*")
 @SpringBootApplication
-@EnableCaching  
+@EnableCaching
 public class BootFutureApplication {
 	final static Logger logger = LoggerFactory.getLogger(BootFutureApplication.class);
 

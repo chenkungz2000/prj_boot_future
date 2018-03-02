@@ -4,10 +4,10 @@ import com.boot.future.entity.LoginUser;
 import com.boot.future.entity.LoginUserData;
 import com.boot.future.service.ILoginUserDataService;
 import com.boot.future.service.ILoginUserService;
-import com.boot.future.tools.CacheUtils;
-import com.boot.future.tools.Tools;
-import com.boot.future.tools.ValidateUtils;
 
+import com.boot.future.util.CacheUtils;
+import com.boot.future.util.Utils;
+import com.boot.future.util.ValidateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,7 +78,7 @@ public class LoginUserController extends BaseController {
                 throw new RuntimeException("验证码对应不上code=" + code + "  sessionCode=" + sessionCode);
             }
             LoginUser user = null;
-            if (Tools.checkPhone(value)) {
+            if (Utils.checkPhone(value)) {
                 user = service.getLoginUserByPhoneAndPassword(value, password);
             } else {
                 user = service.getLoginUserByNameAndPassword(value, password);
@@ -115,7 +115,7 @@ public class LoginUserController extends BaseController {
                 throw new Exception("该用户名称已注册");
             LoginUser user = new LoginUser();
             LoginUserData record = new LoginUserData();
-            String ip = Tools.getIpAddr(request);
+            String ip = Utils.getIpAddr(request);
             user.setName(name);
             user.setPassword(password);
             user.setPhone(phone);

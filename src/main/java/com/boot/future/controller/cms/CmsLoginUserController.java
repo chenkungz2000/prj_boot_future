@@ -2,26 +2,22 @@ package com.boot.future.controller.cms;
 
 import com.boot.future.controller.cms.BaseController;
 import com.boot.future.entity.LoginUser;
-import com.boot.future.entity.LoginUserData;
 import com.boot.future.service.ILoginUserDataService;
 import com.boot.future.service.ILoginUserService;
-import com.boot.future.tools.CacheUtils;
-import com.boot.future.tools.Tools;
-import com.boot.future.tools.ValidateUtils;
-import org.apache.commons.lang3.StringUtils;
+
+import com.boot.future.util.CookiesUtils;
+import com.boot.future.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-import java.util.Date;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.net.SocketException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,18 +38,14 @@ public class CmsLoginUserController extends BaseController {
     @Autowired
     ILoginUserDataService iLoginUserDataService;
 
-
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> login(String code, String value, String password) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         Boolean flag = false;
         try {
-            password = request.getParameter("password");
-            value = request.getParameter("value");
             LoginUser user = null;
-            if (Tools.checkPhone(value)) {
+            if (Utils.checkPhone(value)) {
                 user = service.getLoginUserByPhoneAndPassword(value, password);
             } else {
                 user = service.getLoginUserByNameAndPassword(value, password);
@@ -61,6 +53,8 @@ public class CmsLoginUserController extends BaseController {
             if (user != null) {
                 flag = true;
                 map.put("name", user.getName());
+                CookiesUtils.setCookie(response,user.getName(),"loginCookies");
+               request.getSession(true).setAttribute("name", user.getName());
             }
 
         } catch (Exception e) {
@@ -70,4 +64,29 @@ public class CmsLoginUserController extends BaseController {
         return map;
 
     }
+
+    /**
+     * 检测登陆
+     */
+    @GetMapping(value = "/ch_login")
+    @ResponseBody
+    public Map<String, Object> ch_Login() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        boolean flag = false;
+        try {
+            String sessionname = (String) request.getSession(true).getAttribute("name");
+            if (sessionname != null && sessionname.length() >= 0) {
+                LoginUser user = service.getLoginUserByandName(sessionname);
+                if (user.getName() != null)
+                    // request.getSession(true).removeAttribute("name");
+                    flag = true;
+            }
+        } catch (Exception e) {
+            map.put("msg", e.getMessage());
+        }
+        map.put("flag", flag);
+        return map;
+    }
+
+
 }

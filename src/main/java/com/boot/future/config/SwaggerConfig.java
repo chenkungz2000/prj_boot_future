@@ -24,7 +24,7 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("对外开放接口API 文档").description("HTTP对外开放接口").version("1.0.0")
+		return new ApiInfoBuilder().title("CMS对外开放接口API 文档").description("HTTP对外开放接口").version("1.0.0")
 				.termsOfServiceUrl("http://xxx.xxx.com").license("LICENSE").licenseUrl("http://xxx.xxx.com").build();
 	}
 /*    public void addResourceHandlers(ResourceHandlerRegistry registry) {

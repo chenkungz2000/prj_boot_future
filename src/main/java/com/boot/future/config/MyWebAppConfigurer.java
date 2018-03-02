@@ -1,29 +1,36 @@
 package com.boot.future.config;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+
+import javax.servlet.Filter;
 
 @Configuration
 public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
+    final static Logger logger = LoggerFactory.getLogger(MyWebAppConfigurer.class);
 
     /*
     * 自定文件夹
+    * http://localhost:8888/web/123.png
+    * web为url目录，对应到webapp目录下
     * */
-
-/*	@Override
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/data/**").addResourceLocations("classpath:/data/");
-		super.addResourceHandlers(registry);
-	}*/
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/webapp/");
+        super.addResourceHandlers(registry);
+    }
 
     /*设置字符编码威utf-8*/
     @Bean
@@ -32,17 +39,25 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
                 Charset.forName("UTF-8"));
         return converter;
     }
+//    @Bean
+//    public InternalResourceViewResolver viewResolver(){
+//        InternalResourceViewResolver viewResolver=new InternalResourceViewResolver();
+//        viewResolver.setPrefix("/");
+//        viewResolver.setSuffix(".jsp");
+//        viewResolver.setViewClass(JstlView.class);
+//        return viewResolver;
+//    }
 
-    @Override
-    public void configureMessageConverters(
-            List<HttpMessageConverter<?>> converters) {
-        super.configureMessageConverters(converters);
-        converters.add(responseBodyConverter());
-    }
-
-    @Override
-    public void configureContentNegotiation(
-            ContentNegotiationConfigurer configurer) {
-        configurer.favorPathExtension(false);
-    }
+    /**
+     * 配置过滤器
+     *
+     * @return
+     */
+//    @Bean
+//    public FilterRegistrationBean filterRegist() {
+//        FilterRegistrationBean frBean = new FilterRegistrationBean();
+//        frBean.setFilter(new UrlFilter());
+//        frBean.addUrlPatterns("/cms/*");
+//        return frBean;
+//    }
 }
