@@ -31,7 +31,7 @@
 		</script>
 	</div>
 	<div class="loginfrom">
-		<form id="login_form" action="/app/user/loginTest" method="post" onsubmit="formSubmit(); return false;">
+		<form id="loginform" action="/app/user/loginTest" method="post" onsubmit="formSubmit(); return false;">
 			<div class="input_box">
 				<input type="text" name="name" placeholder="账号" />
 				<input type="text" name="password" placeholder="密码" />

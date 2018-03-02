@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>thymeleafdemo</title>
+    <meta charset="UTF-8"/>
+    <link th:href="@{../bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:src="@{../bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<!--/*@thymesVar id="name" type="java.lang.String"*/-->
+<p th:text="'Hello！, ' + ${name} + '!'">13333</p>
+<button class="btn btn-success">按钮</button>
+
+</body>
+</html>

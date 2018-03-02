@@ -131,7 +131,7 @@
                             <div class="option">
                                 <label for="category-fname">父节点</label>
                                 <select id="category-fname" class="form-control" name="fid"></select>
-                                <input type="hidden" id="category-parentid" name="parentid" class="form-control">
+                                <input type="hidden" id="category-parentid" name="parentid" class="form-control" value="0">
                                 <span class="prompt-text">栏目是有层级关系的，您可以有一个“音乐”分类目录，在这个目录下可以有叫做“流行”和“古典”的子目录。</span>
                             </div>
                         </div>
@@ -367,6 +367,7 @@
         });
     });
     $(document).ready(function () {
+        /*获取栏目*/
         var url = "/cmscategory/get";
         $(function () {
             $.get(url, {}, function (data) {
@@ -393,11 +394,15 @@
                 }
             }, 'json');
         })
-        var prentid = $('.form-group .option #category-fname').change().val();
-        $('.category-parentid').val(prentid)
 
     })
+    /*传输parentid*/
+    $('.form-group .option #category-fname').change(function(){
+        var parentid = $('#category-fname option:selected').val()
+       var num= $('.form-group .option #category-parentid').val(parentid)
 
+    })
+    /*新建栏目*/
     function formSubmit() {
         $.post($("#addfrom").attr("action"), $("#addfrom")
             .serialize(), function (data) {
