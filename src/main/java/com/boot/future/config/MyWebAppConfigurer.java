@@ -39,14 +39,15 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
                 Charset.forName("UTF-8"));
         return converter;
     }
-//    @Bean
-//    public InternalResourceViewResolver viewResolver(){
-//        InternalResourceViewResolver viewResolver=new InternalResourceViewResolver();
-//        viewResolver.setPrefix("/");
-//        viewResolver.setSuffix(".jsp");
-//        viewResolver.setViewClass(JstlView.class);
-//        return viewResolver;
-//    }
+
+    @Bean
+    public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("webapp/");
+        viewResolver.setSuffix(".html");
+        viewResolver.setViewClass(JstlView.class);
+        return viewResolver;
+    }
 
     /**
      * 配置过滤器
@@ -60,4 +61,12 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
 //        frBean.addUrlPatterns("/cms/*");
 //        return frBean;
 //    }
+
+    //拦截器
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new MyInterceptor())    //指定拦截器类
+                .addPathPatterns("/cms/**");        //指定该类拦截的url
+
+    }
 }

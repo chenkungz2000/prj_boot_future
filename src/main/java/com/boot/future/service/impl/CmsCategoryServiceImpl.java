@@ -118,6 +118,8 @@ public class CmsCategoryServiceImpl extends ServiceImpl<CmsCategoryMapper, CmsCa
             } else {
                 map.put("msg", "同个栏目下存在同名");
             }
+
+
         } catch (Exception e) {
             map.put("msg", e.getMessage());
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();

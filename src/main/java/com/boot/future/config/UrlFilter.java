@@ -23,14 +23,14 @@ public class UrlFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
         System.out.print("自定义过滤器->doFilter");
-//        session.setMaxInactiveInterval(30 * 60);// 设置单位为秒，设置为-1永不过期
-//        String sessionname = session.getAttribute("name") == null ? "" : (String) session.getAttribute("name");
-//        if (StringUtils.isBlank(sessionname)) {
-//            response.sendRedirect("http://localhost:8888/cms/login");
-//            filterChain.doFilter(request, response);
-//        } else {
+		session.setMaxInactiveInterval(30 * 60);// 设置单位为秒，设置为-1永不过期
+		String sessionname = session.getAttribute("name") == null ? "" : (String) session.getAttribute("name");
+		if (StringUtils.isBlank(sessionname)) {
+            response.sendRedirect("/login.html");
             filterChain.doFilter(request, response);
-       // }
+        } else {
+            filterChain.doFilter(request, response);
+        }
 
     }
 
