@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.boot.future.swagger.result;
+package com.boot.future.swagger;
 
 import java.io.Serializable;
 

@@ -1,5 +1,6 @@
 package com.boot.future.controller.tools;
 
+import com.boot.future.swagger.Result;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.boot.future.entity.LoginUser;
 import com.boot.future.service.ILoginUserService;
-import com.boot.future.swagger.result.Result;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;

@@ -19,14 +19,14 @@
 			var url = "/loginuser/create";
 			$(function() {
 				$('.submit').click(function() {
-                    $.get(url, {
-                        "name" : $('#name').val(),
-                        "phone" : $('#phone').val(),
-                        "password" : $('#password').val()
-                    }, function(data) {
-                        alert(data.flag);
-                    }, 'json');
-                });
+					$.get(url, {
+						"name" : $('#name').val(),
+						"phone" : $('#phone').val(),
+						"password" : $('#password').val()
+					}, function(data) {
+						alert(data.flag);
+					}, 'json');
+				});
 			});
 		</script>
 	</div>
@@ -41,15 +41,20 @@
 		</form>
 		<table>
 			<tr>
-				<td class="text-right"><strong>验证码:</strong>&nbsp;&nbsp;</td>
-				<td><input type="text" class="form-control" required name="codevalidate" style="width: 40%; display: inline">
-					<img id="codevalidate" src="" width="90" height="30" style="margin-left: 10px" onclick="flushCode()"></td>
+				<td class="text-right">
+					<strong>验证码:</strong>&nbsp;&nbsp;
+				</td>
+				<td>
+					<input type="text" class="form-control" required name="codevalidate" style="width: 40%; display: inline">
+					<img id="codevalidate" src="" width="90" height="30" style="margin-left: 10px" onclick="flushCode()">
+				</td>
 			</tr>
 		</table>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				flushCode()
 			})
+
 			// 刷新图片
 			function flushCode() {
 				/*        window.location.host;
@@ -59,12 +64,12 @@
 				var url = "/loginuser/validateCode/" + new Date();
 				$("#codevalidate").prop('src', url);
 			}
+
 			/* 登录 */
 			var mac = "XXX";
 
 			function formSubmit() {
-				$.get($("#login_form").attr("action"), $("#login_form")
-						.serialize(), function(data) {
+				$.get($("#login_form").attr("action"), $("#login_form").serialize(), function(data) {
 					if (data.flag == true) {
 						if (data.online == 1)
 							alert("已经有设备登陆过");
@@ -92,6 +97,7 @@
 			$(document).ready(function() {
 				flushCode()
 			})
+
 			// 刷新图片
 			function flushCode() {
 				/*        window.location.host;
@@ -115,8 +121,7 @@
 							if (data.online == 1)
 								alert("已经有设备登陆");
 
-						}
-						;
+						};
 					}, 'json');
 				});
 			})

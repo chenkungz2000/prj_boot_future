@@ -24,5 +24,6 @@ public interface ICmsCategoryService extends IService<CmsCategory> {
 	List<CmsCategory> getList();
 
 	Map<String, Object> insertCmsCategory(String name, String keyword, String nickname, String parentid);
+
 	Map<String, Object> insertCmsCategory2(String name, String keyword, String nickname, String parentid);
 }

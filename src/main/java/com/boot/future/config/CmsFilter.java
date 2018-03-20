@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class UrlFilter implements Filter {
+public class CmsFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
