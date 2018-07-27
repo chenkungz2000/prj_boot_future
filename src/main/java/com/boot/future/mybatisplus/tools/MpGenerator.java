@@ -31,7 +31,7 @@ public class MpGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         // gc.setOutputDir(System.getProperty("user.dir")+"/src/main/java");
-        String path="E://my_repository//pr_sbmbp//src//main//";
+        final String path="E://my_repository//pr_sbmbp//src//main//";
         gc.setOutputDir(path+"java");
         gc.setFileOverride(true);
         gc.setActiveRecord(true);// 不需要ActiveRecord特性的请改为false

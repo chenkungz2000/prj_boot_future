@@ -63,10 +63,10 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
 //    }
 
     //拦截器
-    @Override
+/*    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new MyInterceptor())    //指定拦截器类
                 .addPathPatterns("/cms/**");        //指定该类拦截的url
 
-    }
+    }*/
 }
