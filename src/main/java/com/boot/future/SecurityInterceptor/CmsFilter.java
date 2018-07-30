@@ -1,13 +1,12 @@
-package com.boot.future.config;
+package com.boot.future.SecurityInterceptor;
 
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;
-import java.io.IOException;
-import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 public class CmsFilter implements Filter {
 

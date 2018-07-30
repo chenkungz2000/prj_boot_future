@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>管理系统</title>
+    <!--如果你的页面上的路径不以/开头，则认为是相对路径，默认会自动加上上个页面请求的路径-->
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/style.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/login.css">
+    <link rel="apple-touch-icon-precomposed" href="bootstrap/images/icon.png">
+    <link rel="shortcut icon" href="bootstrap/images/favicon.ico">
+    <script src="bootstrap/js/jquery.js"></script>
+</head>
+
+<body class="user-select">
+<div class="container">
+    <div class="siteIcon">
+        <img src="images/icon/icon.png" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用" draggable="false"/>
+    </div>
+    <form id="login_form" action="/cmsloginuser/login" method="post" autocomplete="off" class="form-signin">
+        <h2 class="form-signin-heading">管理员登录失败</h2>
+    </form>
+    <div class="footer">
+        <p>
+            <a href="index.html" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到后台 →</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

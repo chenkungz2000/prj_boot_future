@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/cms")
+@RequestMapping("cms")
 public class CmsViewController extends BaseController {
 
 
@@ -14,13 +14,9 @@ public class CmsViewController extends BaseController {
 	public String index() {
 		return "cms/index";
 	}
-	@GetMapping(value = "/cmslogin")
+	@GetMapping(value = "/login")
 	public String cmslogin(Model model) {
 		return "cms/login";
-	}
-	@GetMapping(value = "/login")
-	public String login(Model model) {
-		return "login";
 	}
 	@GetMapping(value = "/bsdemo")
 	public String bsdemo(Model model) {

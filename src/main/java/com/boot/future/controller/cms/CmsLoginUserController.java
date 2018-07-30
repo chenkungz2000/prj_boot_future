@@ -6,6 +6,7 @@ import com.boot.future.service.ILoginUserDataService;
 import com.boot.future.service.ILoginUserService;
 
 import com.boot.future.util.CookiesUtils;
+import com.boot.future.util.RedisUtils;
 import com.boot.future.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,8 @@ public class CmsLoginUserController extends BaseController {
     @Autowired
     ILoginUserDataService iLoginUserDataService;
 
+    RedisUtils redisUtils=new RedisUtils();
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> login(String code, String value, String password) throws Exception {
@@ -52,7 +55,9 @@ public class CmsLoginUserController extends BaseController {
             }
             if (user != null) {
                 flag = true;
-                map.put("name", user.getName());
+                map.put("value", value);
+                map.put("password",password);
+                redisUtils.set("loginusercache",map);
                 CookiesUtils.setCookie(response,user.getName(),"loginCookies");
                request.getSession(true).setAttribute("name", user.getName());
             }

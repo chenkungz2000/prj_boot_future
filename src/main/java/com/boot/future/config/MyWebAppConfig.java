@@ -1,12 +1,10 @@
 package com.boot.future.config;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 
+import com.boot.future.SecurityInterceptor.CmsInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -15,24 +13,16 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import javax.servlet.Filter;
+
 
 @Configuration
-public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
-    final static Logger logger = LoggerFactory.getLogger(MyWebAppConfigurer.class);
+public class MyWebAppConfig implements WebMvcConfigurer {
+    final static Logger logger = LoggerFactory.getLogger(MyWebAppConfig.class);
 
-    /*
-    * 自定文件夹
-    * http://localhost:8888/web/123.png
-    * web为url目录，对应到webapp目录下
-    * */
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/webapp/");
-        super.addResourceHandlers(registry);
-    }
-
-    /*设置字符编码威utf-8*/
+    /**
+     * 设置字符编码威utf-8
+     * @return
+     */
     @Bean
     public HttpMessageConverter<String> responseBodyConverter() {
         StringHttpMessageConverter converter = new StringHttpMessageConverter(
@@ -40,6 +30,10 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         return converter;
     }
 
+    /**
+     * 设置页面格式
+     * @return
+     */
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -48,6 +42,29 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         viewResolver.setViewClass(JstlView.class);
         return viewResolver;
     }
+
+    /**
+     * 映射访问路径
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //第一个方法设置访问路径前缀，第二个方法设置资源路径
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/webapp/");
+    }
+
+    /**
+     * 拦截
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new CmsInterceptor())    //指定拦截器类
+                .excludePathPatterns("/cms/bootstrap/**", "/images/**","/cms/login")
+                .addPathPatterns("/cms/**");        //指定该类拦截的url
+
+    }
+
 
     /**
      * 配置过滤器
@@ -62,11 +79,4 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
 //        return frBean;
 //    }
 
-    //拦截器
-/*    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyInterceptor())    //指定拦截器类
-                .addPathPatterns("/cms/**");        //指定该类拦截的url
-
-    }*/
 }

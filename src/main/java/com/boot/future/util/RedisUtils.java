@@ -15,6 +15,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedisUtils {
 
+    public RedisUtils(){
+
+    }
+
     @Autowired
     private RedisTemplate redisTemplate;
 

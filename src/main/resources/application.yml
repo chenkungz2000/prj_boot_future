@@ -1,0 +1,57 @@
+
+spring:
+
+    #数据库连接
+    datasource:
+        url: jdbc:mysql://localhost:3306/prj_double?useUnicode=true&characterEncoding=UTF-8&?serverTimezone=UTC
+        name: prj_double
+        username: root
+        password: root
+        driver-class-name: com.mysql.jdbc.Driver
+
+    #字符编码
+    http:
+      encoding:
+        charset: utf-8
+        force: true
+        enabled: true
+
+    #页面
+    mvc:
+      view:
+        prefix: webapp/
+        suffix: .html
+    resources:
+      static-locations: classpath:/webapp/
+
+    #thymeleaf设置
+    thymeleaf:
+     #开发时关闭缓存,不然没法看到实时页面
+      cache: false
+      encoding: UTF-8
+      mode: HTML5
+      prefix: classpath:/webapp/
+      suffix: .html
+      servlet:
+        content-type: text/html
+    #热部署
+    devtools:
+      restart:
+        #排除哪个目录的文件不需要restart
+        exclude: webapp/**
+        #添加哪个目录的文件需要restart idea不支持
+        additional-paths: src/main/java/
+
+#tomcat
+server:
+  tomcat:
+    accesslog:
+      directory:
+    uri-encoding: UTF-8
+  #端口号
+  port: 9999
+
+#mybatis配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package:  com.boot.future.entity

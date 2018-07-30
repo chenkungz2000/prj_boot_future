@@ -1,4 +1,4 @@
-package com.boot.future.config;
+package com.boot.future.SecurityInterceptor;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class MyInterceptor implements HandlerInterceptor {
+public class CmsInterceptor implements HandlerInterceptor {
     //在请求处理之前进行调用（Controller方法调用之前
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
@@ -18,7 +18,7 @@ public class MyInterceptor implements HandlerInterceptor {
         session.setMaxInactiveInterval(30 * 60);// 设置单位为秒，设置为-1永不过期
         String sessionname = session.getAttribute("name") == null ? "" : (String) session.getAttribute("name");
         if (StringUtils.isBlank(sessionname)) {
-            httpServletResponse.sendRedirect("/login.html");
+            httpServletResponse.sendRedirect("/cms/login");
         }
         return true;    //如果false，停止流程，api被拦截
     }
