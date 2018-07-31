@@ -6,6 +6,8 @@ import com.boot.future.entity.LoginUser;
 import com.boot.future.mapper.LoginUserMapper;
 import com.boot.future.service.ILoginUserService;
 
+import com.boot.future.util.CookiesUtils;
+import com.boot.future.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +53,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 		user.setPhone(phone);
 		user.setUpdatedate(new Date());
 		falg = super.updateById(user);
-		
+
 	}
 
 	@CacheEvict(key ="#p0",allEntries=true)
@@ -70,6 +72,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 		falg = super.insert(user);
 		return falg;
 	}
+
 
 	public boolean updateValue(LoginUser user) {
 		boolean falg = false;
@@ -154,4 +157,25 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 		return loginUser;
 	}
 
+	@Override
+	public boolean detectionLogin(String value, String password) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Boolean flag = false;
+		try {
+			LoginUser user = null;
+			if (Utils.checkPhone(value)) {
+				user = getLoginUserByPhoneAndPassword(value, password);
+			} else {
+				user = getLoginUserByNameAndPassword(value, password);
+			}
+			if (user != null) {
+				flag = true;
+				map.put("value", value);
+				map.put("password",password);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return flag;
+	}
 }

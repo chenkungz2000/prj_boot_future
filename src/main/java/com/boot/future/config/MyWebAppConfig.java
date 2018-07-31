@@ -54,16 +54,32 @@ public class MyWebAppConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 拦截
+     * 跨域
      * @param registry
      */
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new CmsInterceptor())    //指定拦截器类
-                .excludePathPatterns("/cms/bootstrap/**", "/images/**","/cms/login")
-                .addPathPatterns("/cms/**");        //指定该类拦截的url
+    public void addCorsMappings(CorsRegistry registry) {
+
+        registry.addMapping("/**")
+                .allowCredentials(true)
+                .allowedHeaders("*")
+                .allowedOrigins("*")
+                .allowedMethods("*");
 
     }
+
+
+    /**
+     * 拦截
+     * @param registry
+     */
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new CmsInterceptor())    //指定拦截器类
+//                .excludePathPatterns("/cms/bootstrap/**", "/images/**","/cms/login")
+//                .addPathPatterns("/cms/**");        //指定该类拦截的url
+//
+//    }
 
 
     /**

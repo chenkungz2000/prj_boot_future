@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.boot.future.LoginUserDataMapper">
+<mapper namespace="com.boot.future.mapper.LoginUserDataMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.boot.future.LoginUserData">
+    <resultMap id="BaseResultMap" type="com.boot.future.entity.LoginUserData">
         <id column="id" property="id" />
         <result column="login_user_id" property="loginUserId" />
         <result column="login_frequency" property="loginFrequency" />

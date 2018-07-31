@@ -1,70 +1,10 @@
-<!--
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>管理系统</title>
-    &lt;!&ndash;如果你的页面上的路径不以/开头，则认为是相对路径，默认会自动加上上个页面请求的路径&ndash;&gt;
-    <link rel="stylesheet" type="text/css" href="cms/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="cms/bootstrap/css/style.css">
-    <link rel="stylesheet" type="text/css" href="cms/bootstrap/css/login.css">
-    <link rel="apple-touch-icon-precomposed" href="cms/bootstrap/images/icon.png">
-    <link rel="shortcut icon" href="cms/bootstrap/images/favicon.ico">
-    <script src="cms/bootstrap/js/jquery.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
-
-<body class="user-select">
-<div class="container">
-    <div class="siteIcon">
-        <img src="cms/icon/icon.png" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用" draggable="false"/>
-    </div>
-    <form id="login_form" action="/cmsloginuser/login" method="post" autocomplete="off" class="form-signin">
-        <h2 class="form-signin-heading">管理员登录</h2>
-        <label for="userName" class="sr-only">用户名</label>
-        <input type="text" id="userName" name="value" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
-        <label for="userPwd" class="sr-only">密码</label>
-        <input type="password" id="userPwd" name="password" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
-        <a href="cms/main.html">
-            <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">登录</button>
-        </a>
-    </form>
-    <div class="footer">
-        <p>
-            <a href="cms/index.html" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到后台 →</a>
-        </p>
-    </div>
-</div>
-<script src="cms/bootstrap/js/bootstrap.min.js"></script>
-<script>
-    $('[data-toggle="tooltip"]').tooltip();
-    window.oncontextmenu = function () {
-        //return false;
-    };
-    $('.siteIcon img').click(function () {
-        window.location.reload();
-    });
-    $('#signinSubmit').click(function () {
-        if ($('#name').val() === '') {
-            $(this).text('用户名不能为空');
-        } else if ($('#password').val() === '') {
-            $(this).text('密码不能为空');
-        } else {
-            $(this).text('请稍后...');
-            $.post($("#login_form").attr("action"), $("#login_form").serialize(), function (data) {
-                if (data.flag == true) {
-                    alert(data.flag)
-                    window.location.href = "cms/index";
-                } else {
-                    window.location.href = "cms/login";
-                }
-            }, 'json');
-            return false;
-        }
-    });
-</script>
+<body>
+hello
 </body>
 </html>
--->

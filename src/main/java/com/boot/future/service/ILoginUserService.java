@@ -13,9 +13,11 @@ import com.boot.future.entity.LoginUser;
  * @author ck
  * @since 2017-12-01
  */
-public interface ILoginUserService extends IService<LoginUser> {
+public interface ILoginUserService extends IService<LoginUser>{
+	//检测登录
+	boolean detectionLogin(String value ,String password);
 
-	public boolean updateValue(LoginUser user);
+	boolean updateValue(LoginUser user);
 
 	boolean insert(LoginUser user);
 

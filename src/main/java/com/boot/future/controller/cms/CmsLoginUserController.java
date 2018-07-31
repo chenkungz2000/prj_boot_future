@@ -32,6 +32,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/cmsloginuser")
+@CrossOrigin(maxAge = 3600, methods = {RequestMethod.GET, RequestMethod.POST})
 public class CmsLoginUserController extends BaseController {
     final static Logger logger = LoggerFactory.getLogger(CmsLoginUserController.class);
     @Autowired
@@ -43,6 +44,7 @@ public class CmsLoginUserController extends BaseController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
+    @CrossOrigin
     public Map<String, Object> login(String code, String value, String password) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         Boolean flag = false;
@@ -57,7 +59,6 @@ public class CmsLoginUserController extends BaseController {
                 flag = true;
                 map.put("value", value);
                 map.put("password",password);
-                redisUtils.set("loginusercache",map);
                 CookiesUtils.setCookie(response,user.getName(),"loginCookies");
                request.getSession(true).setAttribute("name", user.getName());
             }

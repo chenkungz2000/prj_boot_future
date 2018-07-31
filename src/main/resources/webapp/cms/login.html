@@ -53,10 +53,11 @@
         } else {
             $(this).text('请稍后...');
             $.post($("#login_form").attr("action"), $("#login_form").serialize(), function (data) {
-                if (data.flag == true) {
-                    alert(data.flag)
-                    window.location.href = "/cms/index";
+                alert(data.flag)
+                if (data.flag) {
+                        window.location.href = "/cms/index";
                 } else {
+                    alert("aaaaaaa")
                     window.location.href = "/cms/login";
                 }
             }, 'json');

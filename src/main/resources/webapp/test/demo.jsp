@@ -10,24 +10,22 @@
 <body>
 	<div class="chuangjian">
 		<div class="input_box">
-			<input id="name" type="text" name="name" value="账号" />
+			<input id="value" type="text" name="value" value="账号" />
 			<input id="password" type="password" name="password" value="密码" />
-			<input id="phone" type="text" name="phone" value="手机号码" />
 			<button type="submit" class="submit">创建</button>
 		</div>
 		<script type="text/javascript">
-			var url = "/loginuser/create";
+			var url = "/cmsloginuser/login";
 			$(function() {
-				$('.submit').click(function() {
-					$.get(url, {
-						"name" : $('#name').val(),
-						"phone" : $('#phone').val(),
-						"password" : $('#password').val()
-					}, function(data) {
-						alert(data.flag);
-					}, 'json');
-				});
-			});
+                $('.submit').click(function() {
+                    $.post(url, {
+                        "value" : $('#value').val(),
+                        "password" : $('#password').val()
+                    }, function(data) {
+                        alert(data.flag);
+                    }, 'json');
+                });
+            });
 		</script>
 	</div>
 	<div class="loginfrom">
