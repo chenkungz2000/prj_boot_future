@@ -1,26 +1,22 @@
 package com.boot.future.controller.cms;
 
-import com.boot.future.controller.cms.BaseController;
 import com.boot.future.entity.LoginUser;
 import com.boot.future.service.ILoginUserDataService;
 import com.boot.future.service.ILoginUserService;
 
 import com.boot.future.util.CookiesUtils;
-import com.boot.future.util.RedisUtils;
 import com.boot.future.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.net.SocketException;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * <p>
@@ -34,13 +30,16 @@ import java.util.Map;
 @RequestMapping("/cmsloginuser")
 @CrossOrigin(maxAge = 3600, methods = {RequestMethod.GET, RequestMethod.POST})
 public class CmsLoginUserController extends BaseController {
+
     final static Logger logger = LoggerFactory.getLogger(CmsLoginUserController.class);
+
+    @Autowired
+    private RedisTemplate<String,String> redisTemplate;
+
     @Autowired
     ILoginUserService service;
     @Autowired
     ILoginUserDataService iLoginUserDataService;
-
-    RedisUtils redisUtils=new RedisUtils();
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody

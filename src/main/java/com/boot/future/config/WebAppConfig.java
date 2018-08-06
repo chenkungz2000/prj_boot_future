@@ -16,8 +16,8 @@ import org.springframework.web.servlet.view.JstlView;
 
 
 @Configuration
-public class MyWebAppConfig implements WebMvcConfigurer {
-    final static Logger logger = LoggerFactory.getLogger(MyWebAppConfig.class);
+public class WebAppConfig implements WebMvcConfigurer {
+    final static Logger logger = LoggerFactory.getLogger(WebAppConfig.class);
 
     /**
      * 设置字符编码威utf-8

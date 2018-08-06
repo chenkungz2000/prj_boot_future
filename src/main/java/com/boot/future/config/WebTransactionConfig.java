@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 //开启事务管理
 @Configuration
 @ComponentScan
-public class TransactionConfig implements TransactionManagementConfigurer {
+public class WebTransactionConfig implements TransactionManagementConfigurer {
     @Autowired
     private DataSource dataSource;
 
