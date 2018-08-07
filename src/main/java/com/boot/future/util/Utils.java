@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.lang.reflect.Field;
 import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -47,6 +48,23 @@ import com.alibaba.fastjson.JSONObject;
 public class Utils {
 
 	private static Logger log = LoggerFactory.getLogger(Utils.class);
+
+
+	public static Map<String, Object> objectToMap(Object obj) throws Exception {
+		if(obj == null){
+			return null;
+		}
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		Field[] declaredFields = obj.getClass().getDeclaredFields();
+		for (Field field : declaredFields) {
+			field.setAccessible(true);
+			map.put(field.getName(), field.get(obj));
+		}
+
+		return map;
+	}
 
 	/**
 	 * 获取当月第一天

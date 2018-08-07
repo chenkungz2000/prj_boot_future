@@ -54,4 +54,4 @@ server:
 #mybatis配置
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
-  type-aliases-package:  com.boot.future.entity
+  type-aliases-package:  com.boot.future.entity.*

@@ -2,7 +2,6 @@ package com.boot.future.config;
 
 import java.nio.charset.Charset;
 
-import com.boot.future.SecurityInterceptor.CmsInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;

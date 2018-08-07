@@ -91,7 +91,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 	// 需要缓存的方法加上手动@Cacheable(value = "userlistcache",keyGenerator = "keyGenerator")
 	// @Cacheable(value = "userlistcache", keyGenerator = "keyGenerator")
 	public List<LoginUser> getListBySQL() {
-		logger.info("无缓存的时候调用这里");
+		//logger.info("无缓存的时候调用这里");
 		return baseMapper.findListBySQL();
 	}
 

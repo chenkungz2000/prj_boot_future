@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
 
 
 @Configuration
-@MapperScan("com.boot.future.mapper*")
+@MapperScan("com.boot.future.mapper")
 public class MybatisPlusConfig {
 
 	/**

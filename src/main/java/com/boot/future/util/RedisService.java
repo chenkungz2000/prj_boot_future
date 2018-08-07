@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class RedisUtils {
+public class RedisService {
 
-    public RedisUtils(){
+    public RedisService(){
 
     }
 

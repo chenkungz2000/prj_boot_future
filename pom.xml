@@ -21,8 +21,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <!--    	<thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
-                    <thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>-->
     </properties>
 
     <dependencies>
@@ -162,10 +160,10 @@
         <!--拼音-->
 
         <!--权限控制 s-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-security</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!--权限控制 e-->
 
     </dependencies>

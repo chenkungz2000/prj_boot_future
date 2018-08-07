@@ -1,6 +1,8 @@
 package com.boot.future.controller.tools;
 
 import com.boot.future.swagger.Result;
+import com.boot.future.util.RedisService;
+import com.boot.future.util.Utils;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.boot.future.entity.LoginUser;
 import com.boot.future.service.ILoginUserService;
+
+
+import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +44,59 @@ public class TestController {
 	@Autowired
 	ILoginUserService service;
 
+	@Autowired
+	private RedisService redisService;
+
+	@RequestMapping("/redis")
+	public String test() {
+		redisService.set("123", "hello world");
+		System.out.println("进入了方法");
+		String string = redisService.get("123").toString();
+		return string;
+	}
+	@RequestMapping("/security")
+	public String security() {
+		return "hello world security";
+	}
+
+	@GetMapping("list")
+	@ResponseBody
+	public Map<String, Object> list() throws Exception {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		boolean flag = false;
+		try {
+			List<LoginUser> list = service.getListBySQL();
+			flag=true;
+			map.put("list", list);
+			redisService.set("list",list);
+		} catch (Exception e) {
+			map.put("flag", flag);
+			map.put("msg", e.getMessage());
+		}
+		return map;
+	}
+
+	@GetMapping("getlist")
+	@ResponseBody
+	public Map<String, Object> getlist() throws Exception {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		boolean flag = false;
+		try {
+			List<LoginUser> list = service.getListBySQL();
+			flag=true;
+			Object object=redisService.get("list");
+			map =Utils.objectToMap(object);
+		} catch (Exception e) {
+			map.put("flag", flag);
+			map.put("msg", e.getMessage());
+		}
+		return map;
+	}
+
+
+
 	@ApiOperation(value = "获取个人信息")
 	@ApiResponse(code = 200, message = "success", response = Result.class)
 	@GetMapping(value = "/get/{id}")
@@ -53,6 +112,7 @@ public class TestController {
 			logger.info("name=" + user.getName());
 			flag = true;
 			map.put("name", user.getName());
+			redisService.set("name",user.getName());
 		} catch (Exception e) {
 			map.put("flag", flag);
 			map.put("msg", e.getMessage());
@@ -60,6 +120,27 @@ public class TestController {
 		logger.info("查询结束 状态：" + flag + "");
 		return map;
 	}
+
+
+	@GetMapping(value = "/get2")
+	@ResponseBody
+	public Map<String, Object> get2() throws Exception {
+		TestRedisFlag();
+		logger.info("查询开始");
+		Map<String, Object> map = new HashMap<String, Object>();
+		boolean flag = false;
+		try {
+			String name= (String) redisService.get("name");
+			map.put("name", name);
+		} catch (Exception e) {
+			map.put("flag", flag);
+			map.put("msg", e.getMessage());
+		}
+		logger.info("查询结束 状态：" + flag + "");
+		return map;
+	}
+
+
 
 	public void TestRedisFlag() {
 		// 连接本地的 Redis 服务

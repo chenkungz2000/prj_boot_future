@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 /*定时器开关*/
 @EnableScheduling
-public class CmsScheduledConfig {
+public class ScheduledConfig {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 /*    @Scheduled(cron = "0 0/1 * * * ?") //每分钟执行一次
